@@ -1,6 +1,6 @@
 local DivinityLibrary = {
 	Theme = {
-		TextFont = "Default", -- Default will use the various font faces used across Rayfield
+		TextFont = "Default",
 		TextColor = Color3.fromRGB(240, 240, 240),
 		
 		Background = Color3.fromRGB(25, 25, 25),
@@ -53,7 +53,6 @@ local Divinity = game:GetObjects("rbxassetid://13034534709")[1]
 -- Object Variables
 local Main = Divinity.Main
 local Elements = Main.Elements
-local Notifications = Main.Notifications
 local TabList = Main.TabList
 
 -- Variables
@@ -63,7 +62,7 @@ local CEnabled = false
 local Minimised = false
 local Hidden = false
 local Debounce = false
-local Notifications = Divinity.Notifications
+local Notifications = Main.Notifications
 
 local Theme = DivinityLibrary.Theme
 
