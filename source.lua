@@ -62,7 +62,7 @@ local CEnabled = false
 local Minimised = false
 local Hidden = false
 local Debounce = false
-local Notifications = Main.Notifications
+local Notifications = Divinity.Notifications
 
 local Theme = DivinityLibrary.Theme
 
