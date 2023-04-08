@@ -49,6 +49,32 @@ local CoreGui = game:GetService("CoreGui")
 -- Interface Management
 local Divinity = game:GetObjects("rbxassetid://13034534709")[1]
 
+if gethui then
+	Divinity.Parent = gethui()
+elseif syn.protect_gui then 
+	syn.protect_gui(Divinity)
+	Divinity.Parent = CoreGui
+elseif CoreGui:FindFirstChild("RobloxGui") then
+	Divinity.Parent = CoreGui:FindFirstChild("RobloxGui")
+else
+	Divinity.Parent = CoreGui
+end
+
+if gethui then
+	for _, Interface in ipairs(gethui():GetChildren()) do
+		if Interface.Name == Divinity.Name and Interface ~= Divinity then
+			Interface.Enabled = false
+			Interface.Name = "Divinity-Old"
+		end
+	end
+else
+	for _, Interface in ipairs(CoreGui:GetChildren()) do
+		if Interface.Name == Divinity.Name and Interface ~= Divinity then
+			Interface.Enabled = false
+			Interface.Name = "Divinity-Old"
+		end
+	end
+end
 
 -- Object Variables
 local Main = Divinity.Main
@@ -100,7 +126,6 @@ end
 function DivinityLibrary:CreateWindow(Settings)
 	Main.Size = UDim2.new(0, 450, 0, 260)
 	Main.Visible = true
-	Main.BackgroundTransparency = 1
 
 	AddDraggingFunctionality(Main, Main)
 
@@ -115,8 +140,6 @@ function DivinityLibrary:CreateWindow(Settings)
 	Notifications.Template.Visible = false
 	Notifications.Visible = true
 	Divinity.Enabled = true
-
-	TweenService:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
 
 	Elements.Template.LayoutOrder = 100000
 	Elements.Template.Visible = false
