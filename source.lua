@@ -117,7 +117,7 @@ local function AddDraggingFunctionality(DragPoint, Main)
 		UserInputService.InputChanged:Connect(function(Input)
 			if Input == DragInput and Dragging then
 				local Delta = Input.Position - MousePos
-				TweenService:Create(Main, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position  = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)}):Play()
+				Main.Position = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
 			end
 		end)
 	end)
@@ -546,12 +546,6 @@ function DivinityLibrary:CreateWindow(Settings)
 				end
 			end
 
-			if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and DropdownSettings.Flag then
-					DivinityLibrary.Flags[DropdownSettings.Flag] = DropdownSettings
-				end
-			end
-
 			return DropdownSettings
 		end
 
@@ -685,12 +679,6 @@ function DivinityLibrary:CreateWindow(Settings)
 				end
 			end
 
-			if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag then
-					DivinityLibrary.Flags[ToggleSettings.Flag] = ToggleSettings
-				end
-			end
-
 			return ToggleSettings
 		end
 
@@ -821,11 +809,7 @@ function DivinityLibrary:CreateWindow(Settings)
 				end
 				SliderSettings.CurrentValue = NewVal
 			end
-			if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and SliderSettings.Flag then
-					DivinityLibrary.Flags[SliderSettings.Flag] = SliderSettings
-				end
-			end
+
 			return SliderSettings
 		end
 
